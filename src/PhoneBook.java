@@ -3,13 +3,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class PhoneBook {
-    public List<Record> recordList = new ArrayList<Record>();
+    private List<Record> recordList = new ArrayList<Record>();
 
     public List<Record> getAllRecords(){
         return this.recordList;
     }
 
-    public void createRecord(Record record) throws PhoneNumberAlreadyExists{
+    public void createRecord(Record record) throws PhoneNumberAlreadyExists {
         if (isConsistPhoneNumber(record)) {
             throw new PhoneNumberAlreadyExists("В справочнике есть запись с номером телефона: ", record.phoneNumber);
         }
@@ -27,14 +27,14 @@ public class PhoneBook {
         createRecord(record);
     }
 
-    public void deleteRecord(long id) throws RecordNotFound{
+    public void deleteRecord(long id) throws RecordNotFound {
         if (!isConsistId(id)) {
             throw new RecordNotFound("Невозможно удалить запись.В справочнике нет записи с id: ", id);
         }
         recordList.removeIf(r -> r.id == id);
     }
 
-    private boolean isConsistId (long id){
+    private boolean isConsistId (long id) {
         for (Record r : recordList) {
             if (r.id == id) {
                 return true;

@@ -23,7 +23,7 @@ public class Record {
         }
     }
 
-    public Record(long id ){
+    public Record(long id ) {
         this.id = id;
 
     }
@@ -33,7 +33,7 @@ public class Record {
         return this.id + " " + this.name+ " " + this.phoneNumber;
     }
 
-    public boolean isValid(){
+    public boolean isValid() {
         if (!Objects.equals(this.name, "")) {
             return false;
         }
