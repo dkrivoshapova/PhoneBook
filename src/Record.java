@@ -7,17 +7,18 @@ public class Record {
     public String phoneNumber = "";
     public String name = "";
 
-    public Record(long id , String phoneNumber, String name){
+    public Record(long id , String phoneNumber, String name) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
 
-    public Record(long id , String info){
+    public Record(long id , String info) {
         this.id = id;
-        if (isPhoneNumber()){
+        if (isPhoneNumber()) {
             this.phoneNumber = info;
-        } else {
+        }
+        else {
             this.name = info;
         }
     }

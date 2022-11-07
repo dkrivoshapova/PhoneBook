@@ -10,25 +10,33 @@ public class PhoneBook {
     }
 
     public void createRecord(Record record) throws PhoneNumberAlreadyExists{
-        if (isConsistPhoneNumber(record)) throw new PhoneNumberAlreadyExists("В справочнике есть запись с номером телефона: ", record.phoneNumber);
+        if (isConsistPhoneNumber(record)) {
+            throw new PhoneNumberAlreadyExists("В справочнике есть запись с номером телефона: ", record.phoneNumber);
+        }
         this.recordList.add(record);
     }
 
     public void updateRecord(Record record) throws RecordNotFound, RecordNotValid, PhoneNumberAlreadyExists {
-        if (!isConsistId(record.id)) throw new RecordNotFound("Невозможно обновить запись. В справочнике нет записи с id: ", record.id);
-        if (!record.isValid()) throw new RecordNotValid("В новой записи не заполнено поле name и/или поле phoneNumber ", record);
+        if (!isConsistId(record.id)) {
+            throw new RecordNotFound("Невозможно обновить запись. В справочнике нет записи с id: ", record.id);
+        }
+        if (!record.isValid()) {
+            throw new RecordNotValid("В новой записи не заполнено поле name и/или поле phoneNumber ", record);
+        }
         deleteRecord(record.id);
         createRecord(record);
     }
 
     public void deleteRecord(long id) throws RecordNotFound{
-        if (!isConsistId(id)) throw new RecordNotFound("Невозможно удалить запись.В справочнике нет записи с id: ", id);
+        if (!isConsistId(id)) {
+            throw new RecordNotFound("Невозможно удалить запись.В справочнике нет записи с id: ", id);
+        }
         recordList.removeIf(r -> r.id == id);
     }
 
     private boolean isConsistId (long id){
         for (Record r : recordList) {
-            if(r.id == id){
+            if (r.id == id) {
                 return true;
             }
         }
@@ -36,9 +44,11 @@ public class PhoneBook {
     }
 
     private boolean isConsistPhoneNumber(Record record){
-        if(record.phoneNumber.isEmpty()) return false;
+        if (record.phoneNumber.isEmpty()) {
+            return false;
+        }
         for (Record r : recordList) {
-            if (r.phoneNumber == record.phoneNumber){
+            if (r.phoneNumber == record.phoneNumber) {
                 return true;
             }
         }
